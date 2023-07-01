@@ -6,6 +6,7 @@ use web_sys::HtmlElement;
 
 // Test Suites
 pub mod add_counter;
+pub mod clear_counters;
 pub mod view_counters;
 
 wasm_bindgen_test_configure!(run_in_browser);
@@ -27,6 +28,10 @@ fn remove_existing_counters() {
 
 pub fn add_counter() {
     find_by_text("Add Counter").click();
+}
+
+pub fn clear_counters() {
+    find_by_text("Clear Counters").click();
 }
 
 // Queries
