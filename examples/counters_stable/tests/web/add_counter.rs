@@ -1,7 +1,7 @@
 use super::*;
 
 #[wasm_bindgen_test]
-fn should_increment_the_number_of_counters() {
+fn should_increase_the_number_of_counters() {
     // Given
     view_counters();
 
