@@ -8,6 +8,7 @@ use web_sys::HtmlElement;
 pub mod add_1k_counters;
 pub mod add_counter;
 pub mod clear_counters;
+pub mod decrement_counter;
 pub mod view_counters;
 
 wasm_bindgen_test_configure!(run_in_browser);
@@ -24,6 +25,10 @@ pub fn add_counter() {
 
 pub fn clear_counters() {
     find_by_text("Clear Counters").click();
+}
+
+pub fn decrement_counter(index: u32) {
+    counter_button(index, "decrement_count").click();
 }
 
 pub fn view_counters() {
@@ -66,6 +71,17 @@ pub fn find_by_text(text: &str) -> HtmlElement {
         .evaluate(&xpath, &document)
         .unwrap()
         .iterate_next()
+        .unwrap()
+        .unwrap()
+        .dyn_into::<HtmlElement>()
+        .unwrap()
+}
+
+pub fn counter_button(index: u32, text: &str) -> HtmlElement {
+    let selector =
+        format!("li:nth-child({}) [data-testid=\"{}\"]", index, text);
+    leptos::document()
+        .query_selector(&selector)
         .unwrap()
         .unwrap()
         .dyn_into::<HtmlElement>()
