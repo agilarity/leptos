@@ -9,6 +9,7 @@ pub mod add_1k_counters;
 pub mod add_counter;
 pub mod clear_counters;
 pub mod decrement_counter;
+pub mod increment_counter;
 pub mod view_counters;
 
 wasm_bindgen_test_configure!(run_in_browser);
@@ -29,6 +30,10 @@ pub fn clear_counters() {
 
 pub fn decrement_counter(index: u32) {
     counter_button(index, "decrement_count").click();
+}
+
+pub fn increment_counter(index: u32) {
+    counter_button(index, "increment_count").click();
 }
 
 pub fn view_counters() {
