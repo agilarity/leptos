@@ -1,8 +1,11 @@
 use counters_stable::Counters;
 use leptos::*;
+use wasm_bindgen::JsCast;
 use wasm_bindgen_test::*;
+use web_sys::HtmlElement;
 
 // Test Suites
+pub mod add_counter;
 pub mod view_counters;
 
 wasm_bindgen_test_configure!(run_in_browser);
@@ -22,6 +25,10 @@ fn remove_existing_counters() {
     }
 }
 
+pub fn add_counter() {
+    find_by_text("Add Counter").click();
+}
+
 // Queries
 
 pub fn total() -> i32 {
@@ -39,5 +46,18 @@ fn data_test_id(id: &str) -> String {
         .unwrap()
         .expect("counters not found")
         .text_content()
+        .unwrap()
+}
+
+pub fn find_by_text(text: &str) -> HtmlElement {
+    let xpath = format!("//*[text()='{}']", text);
+    let document = leptos::document();
+    document
+        .evaluate(&xpath, &document)
+        .unwrap()
+        .iterate_next()
+        .unwrap()
+        .unwrap()
+        .dyn_into::<HtmlElement>()
         .unwrap()
 }
