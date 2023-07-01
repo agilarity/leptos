@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { CountersPage } from "./fixtures/counters_page";
 
-test.describe("Increment Count", () => {
+test.describe("Increment Counter", () => {
   test("should increase the total count", async ({ page }) => {
     const ui = new CountersPage(page);
     await ui.goto();

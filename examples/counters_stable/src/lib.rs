@@ -93,14 +93,14 @@ fn Counter(
 
     view! { cx,
         <li>
-            <button data-testid="decrement_count" on:click=move |_| set_value.update(move |value| *value -= 1)>"-1"</button>
+            <button data-testid="decrement_counter" on:click=move |_| set_value.update(move |value| *value -= 1)>"-1"</button>
             <input type="text"
                 prop:value={move || value.get().to_string()}
                 on:input=input
             />
             <span>{move || value.get().to_string()}</span>
-            <button data-testid="increment_count" on:click=move |_| set_value.update(move |value| *value += 1)>"+1"</button>
-            <button on:click=move |_| set_counters.update(move |counters| counters.retain(|(counter_id, _)| counter_id != &id))>"x"</button>
+            <button data-testid="increment_counter" on:click=move |_| set_value.update(move |value| *value += 1)>"+1"</button>
+            <button data-testid="remove_counter" on:click=move |_| set_counters.update(move |counters| counters.retain(|(counter_id, _)| counter_id != &id))>"x"</button>
         </li>
     }
 }

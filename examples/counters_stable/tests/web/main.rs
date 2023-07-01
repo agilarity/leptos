@@ -10,6 +10,7 @@ pub mod add_counter;
 pub mod clear_counters;
 pub mod decrement_counter;
 pub mod increment_counter;
+pub mod remove_counter;
 pub mod view_counters;
 
 wasm_bindgen_test_configure!(run_in_browser);
@@ -29,11 +30,15 @@ pub fn clear_counters() {
 }
 
 pub fn decrement_counter(index: u32) {
-    counter_button(index, "decrement_count").click();
+    counter_button(index, "decrement_counter").click();
 }
 
 pub fn increment_counter(index: u32) {
-    counter_button(index, "increment_count").click();
+    counter_button(index, "increment_counter").click();
+}
+
+pub fn remove_counter(index: u32) {
+    counter_button(index, "remove_counter").click();
 }
 
 pub fn view_counters() {
@@ -85,6 +90,16 @@ pub fn find_by_text(text: &str) -> HtmlElement {
 pub fn counter_button(index: u32, text: &str) -> HtmlElement {
     let selector =
         format!("li:nth-child({}) [data-testid=\"{}\"]", index, text);
+    leptos::document()
+        .query_selector(&selector)
+        .unwrap()
+        .unwrap()
+        .dyn_into::<HtmlElement>()
+        .unwrap()
+}
+
+pub fn counter(index: u32) -> HtmlElement {
+    let selector = format!("li:nth-child({})", index);
     leptos::document()
         .query_selector(&selector)
         .unwrap()
