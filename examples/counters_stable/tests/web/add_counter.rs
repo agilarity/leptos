@@ -1,16 +1,18 @@
 use super::*;
+use crate::counters_page as ui;
+use pretty_assertions::assert_eq;
 
 #[wasm_bindgen_test]
 fn should_increase_the_number_of_counters() {
     // Given
-    view_counters();
+    ui::view_counters();
 
     // When
-    add_counter();
-    add_counter();
-    add_counter();
+    ui::add_counter();
+    ui::add_counter();
+    ui::add_counter();
 
     // Then
-    assert_eq!(total(), 0);
-    assert_eq!(counters(), 3);
+    assert_eq!(ui::total(), 0);
+    assert_eq!(ui::counters(), 3);
 }

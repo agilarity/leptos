@@ -1,21 +1,22 @@
 use super::*;
+use crate::counters_page as ui;
 use pretty_assertions::assert_eq;
 
 #[wasm_bindgen_test]
 fn should_see_the_title() {
     // When
-    view_counters();
+    ui::view_counters();
 
     // Then
-    assert_eq!(title(), "Counters (Stable)");
+    assert_eq!(ui::title(), "Counters (Stable)");
 }
 
 #[wasm_bindgen_test]
-fn should_see_the_initial_values() {
+fn should_see_the_initial_counts() {
     // When
-    view_counters();
+    ui::view_counters();
 
     // Then
-    assert_eq!(total(), 0);
-    assert_eq!(counters(), 0);
+    assert_eq!(ui::total(), 0);
+    assert_eq!(ui::counters(), 0);
 }
