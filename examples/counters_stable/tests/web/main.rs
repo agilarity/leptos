@@ -46,15 +46,11 @@ pub fn view_counters() {
     mount_to_body(|cx| view! { cx,  <Counters/> });
 }
 
-fn remove_existing_counters() {
-    if let Some(counter) =
-        leptos::document().query_selector("body div").unwrap()
-    {
-        counter.remove();
-    }
-}
+// Results
 
-// Queries
+pub fn title() -> String {
+    leptos::document().title()
+}
 
 pub fn total() -> i32 {
     data_test_id("total").parse::<i32>().unwrap()
@@ -62,6 +58,19 @@ pub fn total() -> i32 {
 
 pub fn counters() -> i32 {
     data_test_id("counters").parse::<i32>().unwrap()
+}
+
+// Internal
+
+fn counter_button(index: u32, text: &str) -> HtmlElement {
+    let selector =
+        format!("li:nth-child({}) [data-testid=\"{}\"]", index, text);
+    leptos::document()
+        .query_selector(&selector)
+        .unwrap()
+        .unwrap()
+        .dyn_into::<HtmlElement>()
+        .unwrap()
 }
 
 fn data_test_id(id: &str) -> String {
@@ -74,7 +83,7 @@ fn data_test_id(id: &str) -> String {
         .unwrap()
 }
 
-pub fn find_by_text(text: &str) -> HtmlElement {
+fn find_by_text(text: &str) -> HtmlElement {
     let xpath = format!("//*[text()='{}']", text);
     let document = leptos::document();
     document
@@ -87,23 +96,10 @@ pub fn find_by_text(text: &str) -> HtmlElement {
         .unwrap()
 }
 
-pub fn counter_button(index: u32, text: &str) -> HtmlElement {
-    let selector =
-        format!("li:nth-child({}) [data-testid=\"{}\"]", index, text);
-    leptos::document()
-        .query_selector(&selector)
-        .unwrap()
-        .unwrap()
-        .dyn_into::<HtmlElement>()
-        .unwrap()
-}
-
-pub fn counter(index: u32) -> HtmlElement {
-    let selector = format!("li:nth-child({})", index);
-    leptos::document()
-        .query_selector(&selector)
-        .unwrap()
-        .unwrap()
-        .dyn_into::<HtmlElement>()
-        .unwrap()
+fn remove_existing_counters() {
+    if let Some(counter) =
+        leptos::document().query_selector("body div").unwrap()
+    {
+        counter.remove();
+    }
 }
