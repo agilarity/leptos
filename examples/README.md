@@ -8,7 +8,7 @@ To the extent that new features have been released or breaking changes have been
 
 ## Getting Started
 
-The simplest way to get started with any example is to use the “quick start” command found in the README for each example. Most of the examples use either [`trunk`](https://trunkrs.dev/) (a simple build system and dev server for client-side-rendered apps) or [`cargo-leptos`](https://github.com/leptos-rs/cargo-leptos) (a build system for server-rendered and client-hydrated apps). 
+The simplest way to get started with any example is to use the “quick start” command found in the README for each example. Most of the examples use either [`trunk`](https://trunkrs.dev/) (a simple build system and dev server for client-side-rendered apps) or [`cargo-leptos`](https://github.com/leptos-rs/cargo-leptos) (a build system for server-rendered and client-hydrated apps).
 
 ## Using Cargo Make
 
@@ -16,16 +16,16 @@ You can also run any of the examples using [`cargo-make`](https://github.com/sag
 
 Follow these steps to get any example up and running.
 
-1. `cd` to the example root directory
+1. `cd` to the example you want to run
 2. Run `cargo make ci` to setup and test the example
 3. Run `cargo make start` to run the example
 4. Open the client URL in the console output (<http://127.0.0.1:8080> or <http://127.0.0.1:3000> by default)
-5. Run `cargo make stop` to end any processes started by `cargo make start`. 
+5. Run `cargo make stop` to end any processes started by `cargo make start`.
 
 Here are a few additional notes:
 
 - Extendable custom task files are located in the [cargo-make](./cargo-make/) directory
-- Running a task will automatically install `cargo` dependencies 
+- Running a task will automatically install `cargo` dependencies
 - Each `Makefile.toml` file must extend the [cargo-make/main.toml](./cargo-make/main.toml) file
 - [cargo-make](./cargo-make/) files that end in `*-test.toml` configure web testing strategies
 - Run `cargo make test-report` to learn which examples have web tests
